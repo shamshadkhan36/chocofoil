@@ -121,7 +121,7 @@ export default function Hero({ onExploreCatalog, onOpenSimulator, onOpenWholesal
             marginBottom: '16px'
           }}>
             <img 
-              src="/products/WhatsApp Image 2026-07-20 at 1.59.14 PM.jpeg" 
+              src="/products/line-embossed.jpeg" 
               alt="Line Embossed Foil Collection"
               style={{
                 width: '100%',

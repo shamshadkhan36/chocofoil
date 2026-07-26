@@ -38,7 +38,7 @@ export default function WrapSimulator({ onAddToCartByCustomSpec }) {
       id: `custom-${selectedShape.id}-${selectedTexture.id}-${selectedColor.id}`,
       name: `Custom ${selectedColor.name} ${selectedTexture.name} Foil`,
       price: 380,
-      image: '/products/WhatsApp Image 2026-07-20 at 1.59.14 PM.jpeg',
+      image: '/products/line-embossed.jpeg',
       selectedColor: selectedColor.name,
       selectedShape: selectedShape.name,
       selectedTexture: selectedTexture.name
