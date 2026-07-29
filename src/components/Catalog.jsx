@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import { CATEGORIES, COLOR_FILTERS } from '../data/products';
 import { Filter, SlidersHorizontal, Sparkles } from 'lucide-react';
 
-export default function Catalog({ products, searchQuery, onQuickView, onAddToCart }) {
+export default function Catalog({ products, searchQuery, onQuickView, onAddToCart, onCustomize }) {
   const [selectedCategory, setSelectedCategory] = useState("All Collections");
   const [selectedColor, setSelectedColor] = useState("All Colors");
   const [sortBy, setSortBy] = useState("popular");
@@ -211,6 +211,7 @@ export default function Catalog({ products, searchQuery, onQuickView, onAddToCar
               product={product}
               onQuickView={onQuickView}
               onAddToCart={onAddToCart}
+              onCustomize={onCustomize}
             />
           ))}
         </div>

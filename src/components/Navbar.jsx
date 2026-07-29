@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Search, Sparkles, PhoneCall, Menu, X, Award } from 'lucide-react';
+import { ShoppingBag, Search, Sparkles, PhoneCall, Menu, X, Award, Palette } from 'lucide-react';
 
 export default function Navbar({ 
   cartCount, 
@@ -7,7 +7,8 @@ export default function Navbar({
   searchQuery, 
   setSearchQuery, 
   onOpenWholesale,
-  onScrollToSection
+  onScrollToSection,
+  onOpenDesigner
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -75,10 +76,8 @@ export default function Navbar({
         {/* Search Bar */}
         <div style={{
           flex: '1',
-          maxWidth: '420px',
-          position: 'relative',
-          display: 'none',
-          smDisplay: 'block'
+          maxWidth: '360px',
+          position: 'relative'
         }} className="desktop-search">
           <Search size={18} color="var(--text-muted)" style={{
             position: 'absolute',
@@ -108,37 +107,51 @@ export default function Navbar({
         </div>
 
         {/* Navigation Links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '24px' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '20px' }} className="desktop-nav">
           <button 
             onClick={() => onScrollToSection('catalog')} 
             style={{ background: 'none', border: 'none', color: 'var(--text-main)', fontSize: '0.92rem', fontWeight: 600, cursor: 'pointer' }}
           >
             Catalog
           </button>
+          
+          <button 
+            onClick={onOpenDesigner} 
+            style={{ 
+              background: 'rgba(243, 198, 76, 0.15)', 
+              border: '1px solid var(--text-gold)', 
+              color: 'var(--text-gold)', 
+              padding: '8px 16px',
+              borderRadius: 'var(--radius-full)',
+              fontSize: '0.88rem', 
+              fontWeight: 800, 
+              cursor: 'pointer', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px',
+              boxShadow: '0 0 16px rgba(243, 198, 76, 0.2)'
+            }}
+          >
+            <Sparkles size={16} /> Customizer Studio
+          </button>
+
           <button 
             onClick={() => onScrollToSection('simulator')} 
-            style={{ background: 'none', border: 'none', color: 'var(--text-gold)', fontSize: '0.92rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
+            style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.92rem', fontWeight: 600, cursor: 'pointer' }}
           >
-            <Sparkles size={16} /> 3D Wrap Simulator
+            3D Wrap Simulator
           </button>
+          
           <button 
             onClick={onOpenWholesale} 
             style={{ background: 'none', border: 'none', color: 'var(--text-main)', fontSize: '0.92rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
           >
-            <Award size={16} color="var(--text-gold)" /> Wholesale & Samples
+            <Award size={16} color="var(--text-gold)" /> Wholesale
           </button>
         </nav>
 
         {/* Action Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <button 
-            onClick={onOpenWholesale}
-            className="btn-secondary"
-            style={{ padding: '8px 16px', fontSize: '0.82rem', display: 'none' }}
-          >
-            Sample Kit
-          </button>
-
           {/* Cart Trigger */}
           <button 
             onClick={onOpenCart}
@@ -208,21 +221,13 @@ export default function Navbar({
           flexDirection: 'column',
           gap: '16px'
         }}>
-          <input 
-            type="text" 
-            placeholder="Search foils..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{
-              width: '100%',
-              background: 'rgba(255, 255, 255, 0.08)',
-              border: '1px solid var(--border-glass)',
-              borderRadius: 'var(--radius-md)',
-              padding: '12px',
-              color: 'white',
-              outline: 'none'
-            }}
-          />
+          <button 
+            onClick={() => { onOpenDesigner(); setMobileMenuOpen(false); }} 
+            className="btn-primary" 
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            <Sparkles size={18} /> Open Customizer Studio
+          </button>
           <button onClick={() => { onScrollToSection('catalog'); setMobileMenuOpen(false); }} style={{ textAlign: 'left', background: 'none', border: 'none', color: 'white', fontSize: '1rem', fontWeight: 600, padding: '8px 0' }}>Browse Catalog</button>
           <button onClick={() => { onScrollToSection('simulator'); setMobileMenuOpen(false); }} style={{ textAlign: 'left', background: 'none', border: 'none', color: 'var(--text-gold)', fontSize: '1rem', fontWeight: 700, padding: '8px 0' }}>3D Wrap Simulator</button>
           <button onClick={() => { onOpenWholesale(); setMobileMenuOpen(false); }} style={{ textAlign: 'left', background: 'none', border: 'none', color: 'white', fontSize: '1rem', fontWeight: 600, padding: '8px 0' }}>Wholesale & Sample Kits</button>

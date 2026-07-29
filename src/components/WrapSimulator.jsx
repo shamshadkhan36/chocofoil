@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Eye, RefreshCw, ShoppingCart, Check } from 'lucide-react';
+import { Sparkles, Eye, RefreshCw, ShoppingCart, Check, Palette } from 'lucide-react';
 
 const SHAPES = [
   { id: 'truffle', name: 'Sphere Truffle', icon: '🔴', borderRadius: '50%' },
@@ -27,7 +27,7 @@ const COLORS = [
   { id: 'copper', name: 'Copper Bronze', gradient: 'linear-gradient(135deg, #fed7aa 0%, #f97316 50%, #7c2d12 100%)', hex: '#f97316' }
 ];
 
-export default function WrapSimulator({ onAddToCartByCustomSpec }) {
+export default function WrapSimulator({ onAddToCartByCustomSpec, onOpenDesigner }) {
   const [selectedShape, setSelectedShape] = useState(SHAPES[0]);
   const [selectedTexture, setSelectedTexture] = useState(TEXTURES[0]);
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
@@ -266,13 +266,23 @@ export default function WrapSimulator({ onAddToCartByCustomSpec }) {
               </div>
             </div>
 
-            <button
-              onClick={handleAddCustom}
-              className="btn-primary"
-              style={{ marginTop: '20px', width: '100%', justifyContent: 'center' }}
-            >
-              {added ? <><Check size={18} /> Added to Cart!</> : <><ShoppingCart size={18} /> Order Custom Specification (₹380)</>}
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginTop: '20px' }}>
+              <button
+                onClick={onOpenDesigner}
+                className="btn-primary"
+                style={{ width: '100%', justifyContent: 'center' }}
+              >
+                <Sparkles size={18} /> Launch Full Online Customizer Studio
+              </button>
+
+              <button
+                onClick={handleAddCustom}
+                className="btn-secondary"
+                style={{ width: '100%', justifyContent: 'center' }}
+              >
+                {added ? <><Check size={18} /> Added to Cart!</> : <><ShoppingCart size={18} /> Quick Add Spec (₹380)</>}
+              </button>
+            </div>
           </div>
         </div>
       </div>

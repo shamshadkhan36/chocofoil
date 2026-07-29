@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Eye, Star, Check, Sparkles } from 'lucide-react';
+import { ShoppingBag, Eye, Star, Check, Sparkles, Palette } from 'lucide-react';
 
-export default function ProductCard({ product, onQuickView, onAddToCart }) {
+export default function ProductCard({ product, onQuickView, onAddToCart, onCustomize }) {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [added, setAdded] = useState(false);
 
@@ -19,6 +19,13 @@ export default function ProductCard({ product, onQuickView, onAddToCart }) {
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 1800);
+  };
+
+  const handleCustomizeClick = (e) => {
+    e.stopPropagation();
+    if (onCustomize) {
+      onCustomize(product);
+    }
   };
 
   return (
@@ -209,25 +216,41 @@ export default function ProductCard({ product, onQuickView, onAddToCart }) {
         </div>
 
         {/* Price & Action Row */}
-        <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <div>
-            <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-gold)' }}>
-              ₹{currentPrice}
+        <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '10px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-gold)' }}>
+                ₹{currentPrice}
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
+                ₹{currentOriginalPrice}
+              </div>
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-              ₹{currentOriginalPrice}
-            </div>
+
+            <button 
+              onClick={handleAdd}
+              className="btn-secondary"
+              style={{
+                padding: '6px 12px',
+                fontSize: '0.8rem'
+              }}
+            >
+              {added ? <><Check size={14} /> Added</> : <><ShoppingBag size={14} /> Add</>}
+            </button>
           </div>
 
-          <button 
-            onClick={handleAdd}
+          {/* MAIN FEATURE: Customize Design Button */}
+          <button
+            onClick={handleCustomizeClick}
             className="btn-primary"
             style={{
-              padding: '8px 16px',
-              fontSize: '0.84rem'
+              width: '100%',
+              justifyContent: 'center',
+              padding: '10px 16px',
+              fontSize: '0.85rem'
             }}
           >
-            {added ? <><Check size={16} /> Added</> : <><ShoppingBag size={16} /> Add</>}
+            <Sparkles size={16} /> Customize Design
           </button>
         </div>
       </div>

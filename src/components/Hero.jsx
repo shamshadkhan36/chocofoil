@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sparkles, ArrowRight, ShieldCheck, Layers, Award, Flame } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Layers, Award, Flame, Palette } from 'lucide-react';
 
-export default function Hero({ onExploreCatalog, onOpenSimulator, onOpenWholesale }) {
+export default function Hero({ onExploreCatalog, onOpenSimulator, onOpenWholesale, onOpenDesigner }) {
   return (
     <section style={{
       position: 'relative',
@@ -48,16 +48,16 @@ export default function Hero({ onExploreCatalog, onOpenSimulator, onOpenWholesal
           maxWidth: '540px',
           lineHeight: 1.6
         }}>
-          Transform ordinary truffles and bars with our exquisite <strong style={{ color: '#fff' }}>Line Embossed</strong>, <strong style={{ color: '#fff' }}>3D Holographic</strong>, <strong style={{ color: '#fff' }}>Damask</strong>, and <strong style={{ color: '#fff' }}>Floral Decorative Foils</strong>. Perfect for artisan chocolatiers, festive hampers, and luxury confectioners.
+          Transform ordinary truffles and bars with our exquisite <strong style={{ color: '#fff' }}>Line Embossed</strong>, <strong style={{ color: '#fff' }}>3D Holographic</strong>, <strong style={{ color: '#fff' }}>Damask</strong>, and <strong style={{ color: '#fff' }}>Custom Printed Foils</strong>. Design your own foil online like Canva or VistaPrint!
         </p>
 
         {/* Action CTAs */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '40px' }}>
-          <button onClick={onExploreCatalog} className="btn-primary">
-            Explore 18+ Collections <ArrowRight size={18} />
+          <button onClick={onOpenDesigner} className="btn-primary" style={{ padding: '14px 28px', fontSize: '1rem' }}>
+            <Sparkles size={20} /> Design Your Own Foil Online
           </button>
-          <button onClick={onOpenSimulator} className="btn-secondary">
-            <Sparkles size={18} color="var(--text-gold)" /> Try 3D Wrap Simulator
+          <button onClick={onExploreCatalog} className="btn-secondary">
+            Explore 18+ Collections <ArrowRight size={18} />
           </button>
         </div>
 
@@ -160,7 +160,7 @@ export default function Hero({ onExploreCatalog, onOpenSimulator, onOpenWholesal
               </p>
             </div>
             <button 
-              onClick={onExploreCatalog}
+              onClick={onOpenDesigner}
               style={{
                 background: 'var(--gold-gradient)',
                 border: 'none',
